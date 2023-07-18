@@ -3,12 +3,18 @@
   /* border: 3px solid black; */
   border-radius: 20px;
   display: flex;
-  /* height: 100px; */
-  width: 80%;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: fit-content;
   display: flex;
   flex-wrap: wrap;
-  margin: 100px;
-  /* overflow: hidden; */
+  margin: auto;
+  position: absolute;
+  min-height: max-content;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
 }
 .logo-text {
   font-size: 100px;
@@ -17,6 +23,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
+  padding-top: 20px;
+  margin-top: 200px;
+  flex-wrap: wrap;
   /* margin-left: -12px; */
   /* overflow: hidden; */
 }
@@ -30,7 +39,7 @@
   display: flex;
   flex-direction: row;
   font-family: "fredoka";
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 600;
 }
 .history div {
@@ -42,24 +51,26 @@
   align-items: center;
 }
 .score {
-  font-weight: 800;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 16px;
   font-family: "inter";
 }
 
 #newGameButton {
   border: none;
   background-color: #f4f6f5;
-  font-size: 12px;
-  font-family: "fredoka one";
+  font-size: 14px;
+  font-family: "fredoka";
   height: 2rem;
-  width: 18em;
+  width: 15em;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   border-radius: 4px;
-  margin-top: 22em;
+  /* margin-top: 15%; */
+  /* margin-bottom: 10%; */
+  /* margin-top: 18em; */
 }
 #newGameButton:hover {
   background-color: rgba(197, 160, 215, 1);
@@ -67,7 +78,6 @@
 .game-area {
   background-color: #2b0040;
   height: max-content;
-  margin: 50px;
-  margin-right: 50px;
+  margin: 20px;
   border-radius: 10px;
 }

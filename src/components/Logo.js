@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Logo.css";
 import SquareBoard from "./SquareBoard";
+import History from "./History";
 
 const Logo = () => {
   const [newGameClicked, setNewGameClicked] = useState(false);
@@ -8,6 +9,12 @@ const Logo = () => {
     setNewGameClicked(true);
     document.getElementById("newGameButton").style.display = "none";
   };
+  const [restartGameClicked, setRestartGameClicked] = useState(false);
+  const restartGame = () => {
+    setRestartGameClicked(true);
+    // document.getElementById("newGameButton").style.display = "none";
+  };
+
   return (
     <>
       <div className="game-start gap-5">
@@ -17,28 +24,24 @@ const Logo = () => {
           <p>toe.</p>
         </div>
         <div className="p-5 game-area">
-          <div className="history gap-3">
-            <div className="bg-blue p-2">
-              <div>PLAYER X</div>
-              <div className="score">0</div>
-            </div>
-            <div className=" p-2" style={{ backgroundColor: "#BCDBF9" }}>
-              <div>DRAW</div>
-              <div className="score">0</div>
-            </div>
-            <div className="bg-yellow p-2">
-              <div>PLAYER O</div>
-              <div className="score">0</div>
-            </div>
-          </div>
+          <History />
           <div>
-            <SquareBoard active={newGameClicked} />
+            <SquareBoard active={newGameClicked} restart={restartGameClicked} />
           </div>
           {/* new game button*/}
 
           <button onClick={newGame} id="newGameButton">
             New Game
           </button>
+          {newGameClicked ? (
+            <>
+              <button onClick={restartGame} id="newGameButton" className="mt-3">
+                Restart Game
+              </button>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

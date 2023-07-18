@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlayerButton from "./PlayerButton";
 
-const SquareBoard = ({ active }) => {
+const SquareBoard = ({ active, restart }) => {
   const [playerX, setPlayerX] = useState(true);
   const [squareValue, setSquareValue] = useState(new Array(9).fill(null));
   const calculateWinner = (squareValue) => {
+    if (squareValue == null) return null;
     // console.log("calculating winner");
     const lines = [
       [0, 1, 2],
@@ -31,7 +32,9 @@ const SquareBoard = ({ active }) => {
   let status;
   const winner = calculateWinner(squareValue);
   if (winner) {
-    status = "Winner " + winner;
+    status = "Game Over!!! Winner " + winner;
+    
+    // console.log( winnerIs.X+1);
   } else {
     status = (playerX ? "X" : "O") + " turn";
   }
@@ -49,7 +52,27 @@ const SquareBoard = ({ active }) => {
     setPlayerX(!playerX);
     // console.log(squareValue);
   };
-
+  useEffect(() => {
+    if (restart) {
+      const nextSquares = squareValue.slice();
+      nextSquares.splice(
+        0,
+        nextSquares.length,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      );
+      setSquareValue(nextSquares);
+      // restart=false;
+      // console.log("restatrt");
+    }
+  }, [restart]);
   return (
     <>
       <div className="board">
@@ -115,12 +138,16 @@ const SquareBoard = ({ active }) => {
         </div>
       </div>
       {active ? (
-        playerX ? (
-          <div className="bg-blue mt-4" id="newGameButton">
+        winner ? (
+          <div className="bg-success text-white fw-normal" id="newGameButton">
+            {status}
+          </div>
+        ) : playerX ? (
+          <div className="bg-blue" id="newGameButton">
             {status}
           </div>
         ) : (
-          <div className="bg-yellow mt-4" id="newGameButton">
+          <div className="bg-yellow" id="newGameButton">
             {status}
           </div>
         )
