@@ -1,9 +1,28 @@
 import React, { useEffect, useState } from "react";
 import PlayerButton from "./PlayerButton";
+import "./Logo.css";
 
-const SquareBoard = ({ active, restart }) => {
+const SquareBoard = () => {
+  const [newGameClicked, setNewGameClicked] = useState(false);
   const [playerX, setPlayerX] = useState(true);
   const [squareValue, setSquareValue] = useState(new Array(9).fill(null));
+  const [xScore, setXScore] = useState(0);
+  const [oScore, setOScore] = useState(0);
+  const [drawScore, setDrawScore] = useState(0);
+
+  const restartGame = () => {
+    // console.log("restart");
+    setSquareValue(squareValue.fill(null));
+    // console.log(squareValue,playerX);
+    setPlayerX(!playerX);
+    
+  };
+  const newGame = () => {
+    setNewGameClicked(true);
+    if (newGameClicked) {
+      document.getElementById("newGameButton").style.display = "none";
+    }
+  };
   const calculateWinner = (squareValue) => {
     if (squareValue == null) return null;
     // console.log("calculating winner");
@@ -31,15 +50,17 @@ const SquareBoard = ({ active, restart }) => {
   };
   let status;
   const winner = calculateWinner(squareValue);
+  // console.log("winner",winner);
   if (winner) {
     status = "Game Over!!! Winner " + winner;
-
+    // setNewGameClicked(false);
+    document.getElementById("newGameButton").style.display = "flex";
     // console.log( winnerIs.X+1);
   } else {
     status = (playerX ? "X" : "O") + " turn";
   }
   const handleClick = (i) => {
-    if (squareValue[i] || calculateWinner(squareValue) || !active) {
+    if (squareValue[i] || calculateWinner(squareValue) || !newGameClicked) {
       return;
     }
     const nextSquares = squareValue.slice();
@@ -50,116 +71,150 @@ const SquareBoard = ({ active, restart }) => {
     }
     setSquareValue(nextSquares);
     setPlayerX(!playerX);
-    // console.log(squareValue);
+    // setNewGameClicked(false);
+    console.log(squareValue);
   };
-  useEffect(() => {
-    if (restart) {
-      const nextSquares = squareValue.slice();
-      nextSquares.splice(
-        0,
-        nextSquares.length,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      );
-      setSquareValue(nextSquares);
-      // restart=false;
-      // console.log("restatrt");
+  var allSquareValuesFilled = false;
+  var drawScoreCheck=false;
+  if (!squareValue.includes(null)) {
+    allSquareValuesFilled = true;
+    if(winner==null){
+      drawScoreCheck=true;
     }
-  }, [restart]);
+    // console.log(sqvalue);
+  }
+
+  useEffect(() => {
+    if (winner === "X") {
+      setXScore(xScore + 1);
+    } else if (winner === "O") {
+      setOScore(oScore + 1);
+    }
+    if (drawScoreCheck) {
+      setDrawScore(drawScore + 1);
+    }
+  }, [winner, drawScoreCheck]);
   return (
     <>
-      <div className="board">
-        <div className=" mt-4">
-          <PlayerButton
-            value={squareValue[0]}
-            onSquareClick={() => {
-              handleClick(0);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[1]}
-            onSquareClick={() => {
-              handleClick(1);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[2]}
-            onSquareClick={() => {
-              handleClick(2);
-            }}
-          />
-        </div>
-        <div className="">
-          <PlayerButton
-            value={squareValue[3]}
-            onSquareClick={() => {
-              handleClick(3);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[4]}
-            onSquareClick={() => {
-              handleClick(4);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[5]}
-            onSquareClick={() => {
-              handleClick(5);
-            }}
-          />
-        </div>
-        <div className="">
-          <PlayerButton
-            value={squareValue[6]}
-            onSquareClick={() => {
-              handleClick(6);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[7]}
-            onSquareClick={() => {
-              handleClick(7);
-            }}
-          />
-          <PlayerButton
-            value={squareValue[8]}
-            onSquareClick={() => {
-              handleClick(8);
-            }}
-          />
-        </div>
-      </div>
-      {active ? (
-        winner ? (
-          <div className="bg-success text-white fw-normal" id="newGameButton">
-            {status}
+      <div className="p-5 game-area">
+        <div className="history gap-3">
+          <div className="bg-blue p-2">
+            <div>PLAYER X</div>
+            <div className="score">{xScore}</div>
           </div>
-        ) : squareValue.includes(null) ? (
-          playerX ? (
-            <div className="bg-blue" id="newGameButton">
-              {status}
+          <div className=" p-2" style={{ backgroundColor: "#BCDBF9" }}>
+            <div>DRAW</div>
+            <div className="score">{drawScore}</div>
+          </div>
+          <div className="bg-yellow p-2">
+            <div>PLAYER O</div>
+            <div className="score">{oScore}</div>
+          </div>
+        </div>
+        <div>
+          <div className="board">
+            <div className=" mt-4">
+              <PlayerButton
+                value={squareValue[0]}
+                onSquareClick={() => {
+                  handleClick(0);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[1]}
+                onSquareClick={() => {
+                  handleClick(1);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[2]}
+                onSquareClick={() => {
+                  handleClick(2);
+                }}
+              />
             </div>
+            <div className="">
+              <PlayerButton
+                value={squareValue[3]}
+                onSquareClick={() => {
+                  handleClick(3);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[4]}
+                onSquareClick={() => {
+                  handleClick(4);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[5]}
+                onSquareClick={() => {
+                  handleClick(5);
+                }}
+              />
+            </div>
+            <div className="">
+              <PlayerButton
+                value={squareValue[6]}
+                onSquareClick={() => {
+                  handleClick(6);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[7]}
+                onSquareClick={() => {
+                  handleClick(7);
+                }}
+              />
+              <PlayerButton
+                value={squareValue[8]}
+                onSquareClick={() => {
+                  handleClick(8);
+                }}
+              />
+            </div>
+          </div>
+          {newGameClicked ? (
+            winner ? (
+              <div
+                className="bg-success text-white fw-normal"
+                id="newGameButton"
+              >
+                {status}
+              </div>
+            ) : squareValue.includes(null) ? (
+              playerX ? (
+                <div className="bg-blue" id="newGameButton">
+                  {status}
+                </div>
+              ) : (
+                <div className="bg-yellow" id="newGameButton">
+                  {status}
+                </div>
+              )
+            ) : (
+              <div
+                className="bg-danger  bg-gradient text-white"
+                id="newGameButton"
+              >
+                Draw!!!
+              </div>
+            )
           ) : (
-            <div className="bg-yellow" id="newGameButton">
-              {status}
-            </div>
-          )
+            ""
+          )}{" "}
+        </div>
+        {/* new game button*/}
+        {newGameClicked ? (
+          <button id="newGameButton" className="mt-2" onClick={restartGame}>
+            Restart Game
+          </button>
         ) : (
-          <div className="bg-danger  bg-gradient text-white" id="newGameButton">
-            Draw!!!
-          </div>
-        )
-      ) : (
-        ""
-      )}
+          <button onClick={newGame} id="newGameButton">
+            New Game
+          </button>
+        )}
+      </div>
     </>
   );
 };
