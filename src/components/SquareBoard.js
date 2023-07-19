@@ -33,7 +33,7 @@ const SquareBoard = ({ active, restart }) => {
   const winner = calculateWinner(squareValue);
   if (winner) {
     status = "Game Over!!! Winner " + winner;
-    
+
     // console.log( winnerIs.X+1);
   } else {
     status = (playerX ? "X" : "O") + " turn";
@@ -142,13 +142,19 @@ const SquareBoard = ({ active, restart }) => {
           <div className="bg-success text-white fw-normal" id="newGameButton">
             {status}
           </div>
-        ) : playerX ? (
-          <div className="bg-blue" id="newGameButton">
-            {status}
-          </div>
+        ) : squareValue.includes(null) ? (
+          playerX ? (
+            <div className="bg-blue" id="newGameButton">
+              {status}
+            </div>
+          ) : (
+            <div className="bg-yellow" id="newGameButton">
+              {status}
+            </div>
+          )
         ) : (
-          <div className="bg-yellow" id="newGameButton">
-            {status}
+          <div className="bg-danger  bg-gradient text-white" id="newGameButton">
+            Draw!!!
           </div>
         )
       ) : (
