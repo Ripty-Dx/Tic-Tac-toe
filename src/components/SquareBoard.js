@@ -18,6 +18,7 @@ const SquareBoard = () => {
     setSquareValue(squareValue.fill(null));
     // console.log(squareValue,playerX);
     setPlayerX(!playerX);
+    toast.dismiss();
   };
   const newGame = () => {
     setNewGameClicked(true);
@@ -98,15 +99,21 @@ const SquareBoard = () => {
       setXScore(xScore + 1);
       toast.success("Winner X !!!", {
         theme: "colored",
+        className: "bg-blue",
       });
     } else if (winner === "O") {
       setOScore(oScore + 1);
       toast.success("Winner O !!!", {
         theme: "colored",
+        className: "bg-yellow",
       });
     }
     if (drawScoreCheck) {
       setDrawScore(drawScore + 1);
+      toast.info("Draw !!!", {
+        theme: "colored",
+        className: "draw-toast",
+      });
     }
   }, [winner, drawScoreCheck]);
   return (

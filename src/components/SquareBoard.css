@@ -25,3 +25,6 @@
 .quit:hover{
   background-color: rgb(208, 39, 39);
 }
+.draw-toast{
+  background-color: rgb(238, 102, 68) !important;
+}
