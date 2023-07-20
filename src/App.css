@@ -57,7 +57,8 @@ button.player-button:hover {
 }
 
 body {
-  background-color: #43115b;
+  /* background-color: #43115b; */
+  padding: 0px;
 }
 .c-blue {
   color: #72cff9 !important;

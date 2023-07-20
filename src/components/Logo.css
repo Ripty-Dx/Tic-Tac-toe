@@ -73,7 +73,8 @@
   /* margin-top: 18em; */
 }
 #newGameButton:hover {
-  background-color: rgba(197, 160, 215, 1);
+  background-color: rgb(205, 52, 123);
+  color: white;
 }
 .game-area {
   background-color: #2b0040;

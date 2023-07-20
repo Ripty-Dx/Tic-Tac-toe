@@ -54,6 +54,7 @@ const SquareBoard = () => {
         squareValue[a] === squareValue[b] &&
         squareValue[a] === squareValue[c]
       ) {
+        
         return squareValue[a];
       }
     }
@@ -206,11 +207,11 @@ const SquareBoard = () => {
               </div>
             ) : squareValue.includes(null) ? (
               playerX ? (
-                <div className="bg-blue" id="newGameButton">
+                <div className="bg-blue text-dark" id="newGameButton">
                   {status}
                 </div>
               ) : (
-                <div className="bg-yellow" id="newGameButton">
+                <div className="bg-yellow text-dark" id="newGameButton">
                   {status}
                 </div>
               )
