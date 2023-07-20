@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PlayerButton from "./PlayerButton";
 import "./Logo.css";
+import "./SquareBoard.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SquareBoard = () => {
   const [newGameClicked, setNewGameClicked] = useState(false);
@@ -15,13 +18,20 @@ const SquareBoard = () => {
     setSquareValue(squareValue.fill(null));
     // console.log(squareValue,playerX);
     setPlayerX(!playerX);
-    
   };
   const newGame = () => {
     setNewGameClicked(true);
     if (newGameClicked) {
       document.getElementById("newGameButton").style.display = "none";
     }
+  };
+  const quitGame = () => {
+    setNewGameClicked(false);
+    setOScore(0);
+    setDrawScore(0);
+    setXScore(0);
+    setSquareValue(squareValue.fill(null));
+    toast.dismiss();
   };
   const calculateWinner = (squareValue) => {
     if (squareValue == null) return null;
@@ -72,14 +82,13 @@ const SquareBoard = () => {
     setSquareValue(nextSquares);
     setPlayerX(!playerX);
     // setNewGameClicked(false);
-    console.log(squareValue);
   };
   var allSquareValuesFilled = false;
-  var drawScoreCheck=false;
+  var drawScoreCheck = false;
   if (!squareValue.includes(null)) {
     allSquareValuesFilled = true;
-    if(winner==null){
-      drawScoreCheck=true;
+    if (winner == null) {
+      drawScoreCheck = true;
     }
     // console.log(sqvalue);
   }
@@ -87,8 +96,14 @@ const SquareBoard = () => {
   useEffect(() => {
     if (winner === "X") {
       setXScore(xScore + 1);
+      toast.success("Winner X !!!", {
+        theme: "colored",
+      });
     } else if (winner === "O") {
       setOScore(oScore + 1);
+      toast.success("Winner O !!!", {
+        theme: "colored",
+      });
     }
     if (drawScoreCheck) {
       setDrawScore(drawScore + 1);
@@ -206,15 +221,21 @@ const SquareBoard = () => {
         </div>
         {/* new game button*/}
         {newGameClicked ? (
-          <button id="newGameButton" className="mt-2" onClick={restartGame}>
-            Restart Game
-          </button>
+          <>
+            <button id="newGameButton" className="mt-2" onClick={restartGame}>
+              Restart Game
+            </button>
+            <button className="mt-2 quit" onClick={quitGame}>
+              Quit
+            </button>
+          </>
         ) : (
           <button onClick={newGame} id="newGameButton">
             New Game
           </button>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 };

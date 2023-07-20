@@ -1,11 +1,27 @@
 .board-row {
   color: black;
   display: flex;
-  flex-direction:column;
   border-radius: 10px;
   background-color: #43115b;
 }
 .board {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.quit{
+  border: none;
+  background-color: #f4f6f5;
+  font-size: 14px;
+  font-family: "fredoka";
+  height: 2rem;
+  width: 15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.quit:hover{
+  background-color: rgb(208, 39, 39);
 }
