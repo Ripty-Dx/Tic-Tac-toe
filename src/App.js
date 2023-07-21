@@ -1,9 +1,11 @@
 import "./App.css";
+import PlayerForm from "./components/PlayerForm";
 import Start from "./components/Start";
 function App() {
   return (
     <>
-      <Start />
+    <PlayerForm/>
+      {/* <Start /> */}
     </>
   );
 }
