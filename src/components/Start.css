@@ -16,7 +16,8 @@
 h1 {
   position: absolute;
   /* top: 49.5vh; */
-  left: 20vmax;
+  left: 20vw;
+  top: 15vw;
   font-family: fantasy;
   font-size: 14vw;
   color: #43115b;
@@ -47,4 +48,19 @@ h1::before {
   90% {
     width: 100%;
   }
+}
+.play-game {
+  /* padding: 0; */
+  margin-top: 10px;
+  /* display: flex; */
+  position: absolute;
+  left: 30vw;
+  top: 40vw;
+  font-size: 5vmax;
+  color: #72cff9;
+  border: 1px solid #72cff9;
+}
+.play-game:hover {
+  background-color: beige;
+  color: #5a1e76;
 }

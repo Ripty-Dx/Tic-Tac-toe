@@ -15,7 +15,7 @@ const Start = () => {
         style={{ backgroundColor: "#43115b", height: "100vh", width: "100vw" }}
       >
         <h1 id="transition">Tic Tac Toe</h1>
-        <button id="playGame" className="play-game" onClick={playGame}>
+        <button id="playGame" className="play-game btn" onClick={playGame}>
           Play Game
         </button>
         
