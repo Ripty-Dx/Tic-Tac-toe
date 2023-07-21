@@ -1,0 +1,50 @@
+/* #cover-image {
+  height: 100vh;
+  width: 100vw;
+  background: url(../images/cover1.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+} */
+/* div{
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+} */
+
+h1 {
+  position: absolute;
+  /* top: 49.5vh; */
+  left: 20vmax;
+  font-family: fantasy;
+  font-size: 14vw;
+  color: #43115b;
+  -webkit-text-stroke: 0.3vw #5e2c76;
+}
+h1::before {
+  content: "Tic Tac Toe";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  color: #72cff9;
+  -webkit-text-stroke: 0vw #5a1e76;
+  border-right: 2px solid #43115b;
+  white-space: nowrap;
+  /* position: absolute; */
+  overflow: hidden;
+  animation: animate 6s linear infinite;
+}
+@keyframes animate {
+  0%,
+  10%,
+  100% {
+    width: 0;
+  }
+  70%,
+  90% {
+    width: 100%;
+  }
+}
