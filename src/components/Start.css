@@ -63,4 +63,7 @@ h1::before {
 .play-game:hover {
   background-color: beige;
   color: #5a1e76;
+}.play-game:focus {
+  background-color: beige;
+  color: #5a1e76;
 }

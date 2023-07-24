@@ -53,6 +53,9 @@
 button.player-button:hover {
   cursor: auto;
   background-color: rgba(90, 30, 118, 1);
+}button.player-button:focus {
+  cursor: auto;
+  background-color: rgba(90, 30, 118, 1);
 }
 
 body {
