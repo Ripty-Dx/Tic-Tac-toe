@@ -6,15 +6,18 @@
   flex-wrap: wrap;
   justify-content: center;
   max-width: fit-content;
-  display: flex;
+  align-items: flex-end;
   flex-wrap: wrap;
   margin: auto;
-  position: absolute;
+  height: max-content;
+  width: max-content;
+  margin: 10px;
+  /* position: absolute; */
   min-height: max-content;
-  top: 10%;
+  /* top: 10%;
   left: 10%;
   right: 10%;
-  bottom: 10%;
+  bottom: 10%; */
 }
 .logo-text {
   font-size: 100px;
@@ -75,13 +78,20 @@
 #newGameButton:hover {
   background-color: rgb(205, 52, 123);
   color: white;
-}#newGameButton:focus {
+}
+#newGameButton:focus {
   background-color: rgb(205, 52, 123);
   color: white;
 }
 .game-area {
   background-color: #2b0040;
   height: max-content;
+  width: max-content;
   margin: 20px;
   border-radius: 10px;
+}
+#gameStart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

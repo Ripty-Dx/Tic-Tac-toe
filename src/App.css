@@ -68,11 +68,35 @@ body {
   color: #72cff9 !important;
 }
 .c-yellow {
-  color: #dcbf3f;
+  color: #dcbf3f !important;
 }
 .bg-blue {
   background-color: #72cff9 !important;
 }
 .bg-yellow {
   background-color: #dcbf3f !important;
+}
+.c-lightpink{
+color: lightpink !important;
+}
+.bg-lightpink{
+  background-color: lightpink !important;
+}
+.c-aquamarine{
+  color: aquamarine !important;
+}
+.bg-aquamarine{
+  background-color: aquamarine !important ;
+}
+.c-greenyellow{
+  color: greenyellow !important;
+}
+.bg-greenyellow{
+  background-color: greenyellow !important;
+}
+.c-deeppink{
+  color: deeppink !important;
+}
+.bg-deeppink{
+  background-color: deeppink !important;
 }

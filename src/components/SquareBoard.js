@@ -5,8 +5,9 @@ import "./SquareBoard.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SquareBoard = ({ xName, oName }) => {
+const SquareBoard = ({ xName, oName, xColor, oColor }) => {
   const [newGameClicked, setNewGameClicked] = useState(false);
+  const [quitGameClicked, setQuitGameClicked] = useState(false);
   const [playerX, setPlayerX] = useState(true);
   const [squareValue, setSquareValue] = useState(new Array(9).fill(null));
   const [xScore, setXScore] = useState(0);
@@ -28,6 +29,7 @@ const SquareBoard = ({ xName, oName }) => {
   };
   const quitGame = () => {
     setNewGameClicked(false);
+    setQuitGameClicked(true);
     setOScore(0);
     setDrawScore(0);
     setXScore(0);
@@ -35,7 +37,6 @@ const SquareBoard = ({ xName, oName }) => {
     toast.dismiss();
     document.getElementById("xNameID").innerText = "PLAYER X";
     document.getElementById("oNameID").innerText = "PLAYER O";
-    
   };
   const calculateWinner = (squareValue) => {
     if (squareValue == null) return null;
@@ -98,17 +99,19 @@ const SquareBoard = ({ xName, oName }) => {
   }
 
   useEffect(() => {
+    var xColorClass = `bg-${xColor}`;
+    var oColorClass = `bg-${oColor}`;
     if (winner === "X") {
       setXScore(xScore + 1);
       toast.success("Winner X !!!", {
         theme: "colored",
-        className: "bg-blue",
+        className: xColorClass,
       });
     } else if (winner === "O") {
       setOScore(oScore + 1);
       toast.success("Winner O !!!", {
         theme: "colored",
-        className: "bg-yellow",
+        className: oColorClass,
       });
     }
     if (drawScoreCheck) {
@@ -118,12 +121,12 @@ const SquareBoard = ({ xName, oName }) => {
         className: "draw-toast",
       });
     }
-  }, [winner, drawScoreCheck]);
+  }, [winner, drawScoreCheck, xColor, oColor]);
   return (
     <>
-      <div className="p-5 game-area">
+      <div className="p-3 game-area" id="game-area-id">
         <div className="history gap-3">
-          <div className="bg-blue p-2">
+          <div className={xColor ? `bg-${xColor} p-2` : "bg-blue p-2"}>
             <div id="xNameID">
               {xName ? xName.toUpperCase().trim().substring(0, 10) : "PLAYER X"}
             </div>
@@ -133,7 +136,7 @@ const SquareBoard = ({ xName, oName }) => {
             <div>DRAW</div>
             <div className="score">{drawScore}</div>
           </div>
-          <div className="bg-yellow p-2">
+          <div className={oColor ? `bg-${oColor} p-2` : "bg-yellow p-2"}>
             <div id="oNameID">
               {oName ? oName.toUpperCase().trim().substring(0, 10) : "PLAYER O"}
             </div>
@@ -144,18 +147,24 @@ const SquareBoard = ({ xName, oName }) => {
           <div className="board">
             <div className=" mt-4">
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[0]}
                 onSquareClick={() => {
                   handleClick(0);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[1]}
                 onSquareClick={() => {
                   handleClick(1);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[2]}
                 onSquareClick={() => {
                   handleClick(2);
@@ -164,38 +173,50 @@ const SquareBoard = ({ xName, oName }) => {
             </div>
             <div className="">
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[3]}
                 onSquareClick={() => {
                   handleClick(3);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[4]}
                 onSquareClick={() => {
                   handleClick(4);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[5]}
                 onSquareClick={() => {
                   handleClick(5);
                 }}
               />
             </div>
-            <div className="">
+            <div className="mb-3">
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[6]}
                 onSquareClick={() => {
                   handleClick(6);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[7]}
                 onSquareClick={() => {
                   handleClick(7);
                 }}
               />
               <PlayerButton
+                xColor={xColor}
+                oColor={oColor}
                 value={squareValue[8]}
                 onSquareClick={() => {
                   handleClick(8);
@@ -213,11 +234,11 @@ const SquareBoard = ({ xName, oName }) => {
               </div>
             ) : squareValue.includes(null) ? (
               playerX ? (
-                <div className="bg-blue text-dark" id="newGameButton">
+                <div className={`bg-${xColor} text-dark`} id="newGameButton">
                   {status}
                 </div>
               ) : (
-                <div className="bg-yellow text-dark" id="newGameButton">
+                <div className={`bg-${oColor} text-dark`} id="newGameButton">
                   {status}
                 </div>
               )
@@ -249,6 +270,14 @@ const SquareBoard = ({ xName, oName }) => {
           </button>
         )}
       </div>
+      {quitGame ? (
+        <>
+          {/* {(document.getElementById("game-area-id").style.display = "none")}{" "} */}
+          {/* <Start /> */}
+        </>
+      ) : (
+        ""
+      )}
       <ToastContainer />
     </>
   );

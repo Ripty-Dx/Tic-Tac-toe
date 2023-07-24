@@ -13,23 +13,26 @@
   align-items: self-start;
 } */
 
-h1 {
-  position: absolute;
-  /* top: 49.5vh; */
+.overflow-property{
+  overflow: hidden !important;
+}
+#transition {
+  /* position: absolute; */
+  /* top: 49.5vh;
   left: 20vw;
-  top: 15vw;
+  top: 15vw; */
+ 
   font-family: fantasy;
   font-size: 14vw;
   color: #43115b;
   -webkit-text-stroke: 0.3vw #5e2c76;
 }
-h1::before {
+#transition::before {
   content: "Tic Tac Toe";
   position: absolute;
-  top: 0;
-  left: 0;
+  
   width: 0%;
-  height: 100%;
+  height: fit-content;
   color: #72cff9;
   -webkit-text-stroke: 0vw #5a1e76;
   border-right: 2px solid #43115b;
@@ -53,9 +56,9 @@ h1::before {
   /* padding: 0; */
   margin-top: 10px;
   /* display: flex; */
-  position: absolute;
-  left: 30vw;
-  top: 40vw;
+  /* position: absolute; */
+  /* left: 30vw; */
+  /* top: 40vw; */
   font-size: 5vmax;
   color: #72cff9;
   border: 1px solid #72cff9;
@@ -63,7 +66,8 @@ h1::before {
 .play-game:hover {
   background-color: beige;
   color: #5a1e76;
-}.play-game:focus {
+}
+.play-game:focus {
   background-color: beige;
   color: #5a1e76;
 }

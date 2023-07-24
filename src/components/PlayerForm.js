@@ -6,6 +6,8 @@ const PlayerForm = () => {
   const [data, setData] = useState({
     xName: null,
     oName: null,
+    xColor: "blue",
+    oColor: "yellow",
   });
   const onSubmitName = (e) => {
     setData({
@@ -13,12 +15,20 @@ const PlayerForm = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(data);
+  // console.log(data);
   const onSubmitForm = (event) => {
     event.preventDefault();
     // console.log("clicked submit", event);
     setSubmitClicked(true);
     document.getElementById("playerFormID").style.display = "none";
+  };
+  const colorValue = (e) => {
+    e.preventDefault();
+    // console.log("color clicked", e);
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
   };
   return (
     <>
@@ -43,9 +53,26 @@ const PlayerForm = () => {
           </div>
           <div className="col-md-4 mt-2">
             <div className="d-flex gap-3">
-              <button className="form-control bg-blue color-button"> </button>
-              <button className="form-control bg-danger color-button"></button>
-              <button className="form-control bg-primary color-button"></button>
+              <button
+                className="form-control bg-blue color-button"
+                name="xColor"
+                value="blue"
+                onClick={colorValue}
+              >
+                {" "}
+              </button>
+              <button
+                className="form-control bg-lightpink color-button"
+                name="xColor"
+                value="lightpink"
+                onClick={colorValue}
+              ></button>
+              <button
+                className="form-control bg-greenyellow color-button"
+                name="xColor"
+                value="greenyellow"
+                onClick={colorValue}
+              ></button>
             </div>
           </div>
         </div>
@@ -69,9 +96,25 @@ const PlayerForm = () => {
           </div>
           <div className="col-md-4 mt-2">
             <div className="d-flex gap-3 ">
-              <button className="form-control bg-yellow color-button"></button>
-              <button className="form-control bg-secondary color-button"></button>
-              <button className="form-control bg-success color-button"></button>
+              <button
+                className="form-control bg-yellow color-button"
+                name="oColor"
+                value="yellow"
+                onClick={colorValue}
+              ></button>
+              <button
+                className="form-control bg-aquamarine color-button"
+                name="oColor"
+                value="aquamarine
+"
+                onClick={colorValue}
+              ></button>
+              <button
+                className="form-control bg-deeppink color-button"
+                name="oColor"
+                value="deeppink"
+                onClick={colorValue}
+              ></button>
             </div>
           </div>
         </div>
@@ -86,7 +129,16 @@ const PlayerForm = () => {
           </div>
         </div>
       </form>
-      {submitClicked ? <Logo xName={data.xName} oName={data.oName} /> : ""}
+      {submitClicked ? (
+        <Logo
+          xName={data.xName}
+          oName={data.oName}
+          xColor={data.xColor}
+          oColor={data.oColor}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
