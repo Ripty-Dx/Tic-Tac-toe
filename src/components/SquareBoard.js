@@ -5,7 +5,7 @@ import "./SquareBoard.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SquareBoard = () => {
+const SquareBoard = ({ xName, oName }) => {
   const [newGameClicked, setNewGameClicked] = useState(false);
   const [playerX, setPlayerX] = useState(true);
   const [squareValue, setSquareValue] = useState(new Array(9).fill(null));
@@ -33,6 +33,9 @@ const SquareBoard = () => {
     setXScore(0);
     setSquareValue(squareValue.fill(null));
     toast.dismiss();
+    document.getElementById("xNameID").innerText = "PLAYER X";
+    document.getElementById("oNameID").innerText = "PLAYER O";
+    
   };
   const calculateWinner = (squareValue) => {
     if (squareValue == null) return null;
@@ -54,7 +57,6 @@ const SquareBoard = () => {
         squareValue[a] === squareValue[b] &&
         squareValue[a] === squareValue[c]
       ) {
-        
         return squareValue[a];
       }
     }
@@ -122,7 +124,9 @@ const SquareBoard = () => {
       <div className="p-5 game-area">
         <div className="history gap-3">
           <div className="bg-blue p-2">
-            <div>PLAYER X</div>
+            <div id="xNameID">
+              {xName ? xName.toUpperCase().trim().substring(0, 10) : "PLAYER X"}
+            </div>
             <div className="score">{xScore}</div>
           </div>
           <div className=" p-2" style={{ backgroundColor: "#BCDBF9" }}>
@@ -130,7 +134,9 @@ const SquareBoard = () => {
             <div className="score">{drawScore}</div>
           </div>
           <div className="bg-yellow p-2">
-            <div>PLAYER O</div>
+            <div id="oNameID">
+              {oName ? oName.toUpperCase().trim().substring(0, 10) : "PLAYER O"}
+            </div>
             <div className="score">{oScore}</div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Start.css";
 import Logo from "./Logo";
+import PlayerForm from "./PlayerForm";
 const Start = () => {
   const [playGameClicked, setPlayGameClicked] = useState(false);
   const playGame = () => {
@@ -8,7 +9,6 @@ const Start = () => {
     document.getElementById("transition").style.display = "none";
     document.getElementById("playGame").style.display = "none";
   };
- 
   return (
     <>
       <div
@@ -18,8 +18,8 @@ const Start = () => {
         <button id="playGame" className="play-game btn" onClick={playGame}>
           Play Game
         </button>
-        
-        {playGameClicked ? <Logo /> : ""}
+
+        {playGameClicked ? <PlayerForm /> : ""}
       </div>
     </>
   );

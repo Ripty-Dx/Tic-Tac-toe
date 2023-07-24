@@ -2,7 +2,7 @@ import React from "react";
 import "./Logo.css";
 import SquareBoard from "./SquareBoard";
 
-const Logo = () => {
+const Logo = ({xName,oName}) => {
   return (
     <>
       <div
@@ -15,7 +15,7 @@ const Logo = () => {
             <span className="c-blue">tac.</span>
             <p>toe.</p>
           </div>
-          <SquareBoard />
+          <SquareBoard xName={xName} oName={oName}/>
         </div>
       </div>
     </>
