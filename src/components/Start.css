@@ -30,7 +30,6 @@
 #transition::before {
   content: "Tic Tac Toe";
   position: absolute;
-  
   width: 0%;
   max-width: fit-content;
   height: fit-content;

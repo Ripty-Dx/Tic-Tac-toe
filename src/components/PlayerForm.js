@@ -3,6 +3,9 @@ import "./PlayerForm.css";
 import Logo from "./Logo";
 const PlayerForm = () => {
   const [submitClicked, setSubmitClicked] = useState(false);
+  const [xColorPicked, setXColorPicked] = useState(true);
+  const [oColorPicked, setOColorPicked] = useState(true);
+
   const [data, setData] = useState({
     xName: null,
     oName: null,
@@ -24,6 +27,8 @@ const PlayerForm = () => {
   };
   const colorValue = (e) => {
     e.preventDefault();
+    // setXColorPicked(true);
+    // setOColorPicked(true);
     // console.log("color clicked", e);
     setData({
       ...data,
@@ -54,25 +59,54 @@ const PlayerForm = () => {
           <div className="col-md-4 mt-2">
             <div className="d-flex gap-3">
               <button
-                className="form-control bg-blue color-button"
+                className="form-control bg-blue color-button position-relative"
                 name="xColor"
                 value="blue"
                 onClick={colorValue}
               >
-                {" "}
+                {xColorPicked ? (
+                  data.xColor==="blue" ? (
+                    <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}{" "}
               </button>
+
               <button
-                className="form-control bg-lightpink color-button"
+                className="form-control bg-lightpink color-button position-relative"
                 name="xColor"
                 value="lightpink"
                 onClick={colorValue}
-              ></button>
+              >
+                {xColorPicked ? (
+                  data.xColor ==="lightpink"? (
+                    <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}
+              </button>
               <button
-                className="form-control bg-greenyellow color-button"
+                className="form-control bg-greenyellow color-button position-relative"
                 name="xColor"
                 value="greenyellow"
                 onClick={colorValue}
-              ></button>
+              >
+                {xColorPicked ? (
+                  data.xColor==="greenyellow" ? (
+                    <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -97,24 +131,51 @@ const PlayerForm = () => {
           <div className="col-md-4 mt-2">
             <div className="d-flex gap-3 ">
               <button
-                className="form-control bg-yellow color-button"
+                className="form-control bg-yellow color-button position-relative"
                 name="oColor"
                 value="yellow"
                 onClick={colorValue}
-              ></button>
+              >
+                 {oColorPicked ? (
+                  data.oColor==="yellow" ? (
+                    <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}{" "}
+              </button>
               <button
-                className="form-control bg-aquamarine color-button"
+                className="form-control bg-aquamarine color-button position-relative"
                 name="oColor"
-                value="aquamarine
-"
+                value="aquamarine"
                 onClick={colorValue}
-              ></button>
+              >
+                   {oColorPicked ? (
+                  data.oColor==="aquamarine" ? (
+                    <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}{" "}
+              </button>
               <button
-                className="form-control bg-deeppink color-button"
+                className="form-control bg-deeppink color-button position-relative"
                 name="oColor"
                 value="deeppink"
                 onClick={colorValue}
-              ></button>
+              >   {oColorPicked ? (
+                data.oColor==="deeppink" ? (
+                  <span className="badge bg-success position-absolute top-0 start-100 translate-middle badge rounded-pill">&#x2713;</span>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
+              )}{" "}</button>
             </div>
           </div>
         </div>
